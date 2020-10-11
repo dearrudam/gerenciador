@@ -8,7 +8,7 @@ Permitir gerenciar informações da comunidade.
 
 ###Features
 
-Participantes
+Membro
     -Organizadores
     - voluntários
     
