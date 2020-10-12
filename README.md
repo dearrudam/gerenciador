@@ -75,3 +75,8 @@ Exemplo:membro121020201557
 
 Crie sua task em Todo , mude ela para a fase de in progress, depois que desenvolver, mude ela para a coluna de code review e abra o Pull Request da sua branch para a branch develop, depois que seu Pr for aceito, você irá criar a release para a master e então irá fazer o merge da develop para a release e depois feita a execução da branch na release então é feito o merge da release na master, quando isso for executado podemos considerar em Done;
 
+Toda e qualquer informação do projeto que seja importante deve estar ou no README ou na Wiki do projeto https://github.com/psanrosa13/gerenciador/wiki
+
+## Acesso
+
+Para solicitar acesso, deverá informar seu login do Github no canal #plantao_java do Discord do Perifacode.
