@@ -17,11 +17,17 @@ public class MembroService {
 
   public Membro incluir(Membro membro) {
     membroRepository
-        .findByEmail()
+        .findByEmail(membro.getEmail())
         .ifPresent((x) -> {
           throw new MembroExistenteException();
         });
 
     return membroRepository.save(membro);
+  }
+
+  public Membro buscar(String email) {
+      return membroRepository
+            .findByEmail(email)
+            .orElseThrow(MembroExistenteException::new);
   }
 }
