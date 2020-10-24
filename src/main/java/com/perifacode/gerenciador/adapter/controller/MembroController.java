@@ -18,19 +18,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class MembroController {
 
   @Autowired
-  MembroService membroService;
+  private MembroService membroService;
 
   @PostMapping
-  public MembroDto incluir(@RequestBody @Valid MembroDto membroDto){
-      Membro membro = MembroConverter.membroDtoToMembro(membroDto);
+  public MembroDto incluir(@RequestBody @Valid MembroDto membroDto) {
+    Membro membro = MembroConverter.membroDtoToMembro(membroDto);
 
-      membro = membroService.incluir(membro);
+    membro = membroService.incluir(membro);
 
-      return MembroConverter.membroToMembroDto(membro);
+    return MembroConverter.membroToMembroDto(membro);
   }
 
   @GetMapping(path = "{email}")
-  public MembroDto buscar(@PathVariable("email") String email){
+  public MembroDto buscar(@PathVariable("email") String email) {
 
     Membro membro = membroService.buscar(email);
 
