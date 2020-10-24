@@ -23,46 +23,46 @@ Inicialmente fomos o que levantamos para iniciar o desenvolvimento.
 
 ### Features
 
-- Serviço de Membros
-   [x] - Quais informações um membro tem ? Inicialmente ele tem um e-mail, usuario, aceite, data de inclusão, data de alteração e interesses(lista de palavras que estão ligados ao que o membro gosta) e campo de ativo ( indicando para membros que não fazem mais parte como inativo)
-   [x] - Criar membro,
-   [] - Atualizar e-mail do membro,
-   [] - Excluir lógicamente o membro (inativar),
-   [] - Pesquisar membro por usuário ou email.
-   [] - Pesquisar membro por data de inclusão.
-   [] - Pesquisar membro por data de atualização.
-   [] - Pesquisar membros que são voluntários.
-   [] - Pesquisar membros que são voluntários por iniciativa
+#### Serviço de Membros
+- [x]  Quais informações um membro tem ? Inicialmente ele tem um e-mail, usuario, aceite, data de inclusão, data de alteração e interesses(lista de palavras que estão ligados ao que o membro gosta) e campo de ativo ( indicando para membros que não fazem mais parte como inativo)
+- [x]  Criar membro,
+- [ ]  Atualizar e-mail do membro,
+- [ ]  Excluir lógicamente o membro (inativar),
+- [ ]  Pesquisar membro por usuário ou email.
+- [ ]  Pesquisar membro por data de inclusão.
+- [ ]  Pesquisar membro por data de atualização.
+- [ ]  Pesquisar membros que são voluntários.
+- [ ]  Pesquisar membros que são voluntários por iniciativa
     
-- Serviço de Tipos de Iniciativas
-   [] - O que um serviço de tipo tem de informação? código, Titulo, descrição, data de cadastro, data de atualização, ativo
-   [] - Criar cadastrado de Tipos de Iniciativas
-   [] - Atualizar Descrição e nome do tipo de iniciativa
-   [] - Busca de tipos de Iniciativa
-   [] - Pesquisa iniciativa por data de criação
-   [] - Pesquisa iniciativa por data de inativação
+#### Serviço de Tipos de Iniciativas
+- [ ]  O que um serviço de tipo tem de informação? código, Titulo, descrição, data de cadastro, data de atualização, ativo
+- [ ]  Criar cadastrado de Tipos de Iniciativas
+- [ ]  Atualizar Descrição e nome do tipo de iniciativa
+- [ ]  Busca de tipos de Iniciativa
+- [ ]  Pesquisa iniciativa por data de criação
+- [ ]  Pesquisa iniciativa por data de inativação
     
--Serviço de Iniciativa
-   [] - Quais campos deve ter neste serviço? Código, Titulo, data de cadastro, data de atualização, ativo, iniciativa, lista de responsáveis.
-   [] - Criar iniciativa ( ela deve ter um tipo vinculado a ela e uma lista de voluntários responsáveis, considerando que nesta lista, deve conter pelo menos 1 voluntário, isso para evitar que uma iniciativa seja criada sem um reposável inicial )
-   [] - Atualizar iniciativa
-   [] - Inativar iniciativa
-   [] - Consultar iniciativas por data de cadastro
-   [] - Consultar iniciativas por tipo
+#### Serviço de Iniciativa
+- [ ]  Quais campos deve ter neste serviço? Código, Titulo, data de cadastro, data de atualização, ativo, iniciativa, lista de responsáveis.
+- [ ]  Criar iniciativa ( ela deve ter um tipo vinculado a ela e uma lista de voluntários responsáveis, considerando que nesta lista, deve conter pelo menos 1 voluntário, isso para evitar que uma iniciativa seja criada sem um reposável inicial )
+- [ ]  Atualizar iniciativa
+- [ ]  Inativar iniciativa
+- [ ]  Consultar iniciativas por data de cadastro
+- [ ]  Consultar iniciativas por tipo
 
-- Serviço de Agenda
-   [] - Quais campo este serviço deve possuir? Data inicio, Data fim, horário inicio, horário fim, responsavel pelo agendamento, iniciativas, membros que querem participar, lista de notas .
-   [] - O recurso de agenda permite membros e voluntários registrarem datas de encontros ou ações de inicitaivas.
-   [] - Na agenda será possível criar compromissos por data e horário
-   [] - Quando a Data não for preenchida assumirá como data inicial e final a data atual.
-   [] - O AGENDAMENTO poderá durar mais de um dia, e ter mais de uma iniciativa envolvida.
-   [] - O agendamento deverá receber os dados do usuário que agendou o compromisso e colocá-lo como resposável
-   [] - Será possível que os membros marquem confirmação no compromisso na iniciativa.
-   [] - Será possível enviar e-mail de aviso para os confirmados no compromisso.
-   [] - Será possível registrar lista de informações no compromisso.
-   [] - Permitir consultar compromisso por iniciativa
-   [] - Permitir consultar compromisso por período de data.
-   [] - Permitir consultar membros confirmados em um agendamento.
+#### Serviço de Agenda
+- [ ]  Quais campo este serviço deve possuir? Data inicio, Data fim, horário inicio, horário fim, responsavel pelo agendamento, iniciativas, membros que querem participar, lista de notas .
+- [ ]  O recurso de agenda permite membros e voluntários registrarem datas de encontros ou ações de inicitaivas.
+- [ ]  Na agenda será possível criar compromissos por data e horário
+- [ ]  Quando a Data não for preenchida assumirá como data inicial e final a data atual.
+- [ ]  O AGENDAMENTO poderá durar mais de um dia, e ter mais de uma iniciativa envolvida.
+- [ ]  O agendamento deverá receber os dados do usuário que agendou o compromisso e colocá-lo como resposável
+- [ ]  Será possível que os membros marquem confirmação no compromisso na iniciativa.
+- [ ]  Será possível enviar e-mail de aviso para os confirmados no compromisso.
+- [ ]  Será possível registrar lista de informações no compromisso.
+- [ ]  Permitir consultar compromisso por iniciativa
+- [ ]  Permitir consultar compromisso por período de data.
+- [ ]  Permitir consultar membros confirmados em um agendamento.
 
 
 ## Como contribuir:
@@ -76,7 +76,7 @@ Inicialmente fomos o que levantamos para iniciar o desenvolvimento.
 - Para saber o que esta pendente no projeto verifique no README do projeto onde possuem as features pendentes
 - Verifique também se não esta em execução a feature através do Kaban do Projeto em (https://github.com/psanrosa13/gerenciador/projects/1)[https://github.com/psanrosa13/gerenciador/projects/1]
 - Crie uma task da feature no Kaban do Projeto, indo na aba Projects do repositório do projeto do Github:
-https://github.com/psanrosa13/gerenciador/projects/1
+  https://github.com/psanrosa13/gerenciador/projects/1
 - Crie na coluna To do
 - Para o nome da Task siga o padrão nomedoserviço + data modelo BR + hora, exemplo : membro241020201651 , caso sua melhoria não seja em um serviço específico coloque gerenciador + data modelo BR + hora
 - Não esqueça de movê-la para In progress
