@@ -5,8 +5,6 @@ import com.perifacode.gerenciador.adapter.presenters.MembroDto;
 import com.perifacode.gerenciador.entity.Membro;
 import com.perifacode.gerenciador.usecase.MembroService;
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

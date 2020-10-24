@@ -1,6 +1,5 @@
 package com.perifacode.gerenciador.adapter.presenters;
 
-import com.perifacode.gerenciador.entity.Membro;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
