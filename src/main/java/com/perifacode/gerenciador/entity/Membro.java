@@ -28,7 +28,7 @@ public class Membro {
 
   public static Membro construirMembro(String email,
                                        String usuario,
-                                       boolean aceitePolitica){
+                                       boolean aceitePolitica) {
     return new Membro(email, usuario, aceitePolitica);
   }
 

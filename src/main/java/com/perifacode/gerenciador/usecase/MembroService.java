@@ -23,8 +23,8 @@ public class MembroService {
   }
 
   public Membro buscar(String email) {
-      return membroRepository
-            .findByEmail(email)
-            .orElseThrow(MembroExistenteException::new);
+    return membroRepository
+        .findByEmail(email)
+        .orElseThrow(MembroExistenteException::new);
   }
 }
