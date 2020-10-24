@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.3.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
+	id 'checkstyle'
 }
 
 group = 'com.perifacode'
@@ -29,4 +30,18 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+checkstyle {
+	toolVersion = '8.10.1'
+	showViolations = true
+	ignoreFailures = false
+}
+
+tasks.withType(Checkstyle) {
+	reports {
+		xml.enabled true
+		html.enabled true
+		html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
+	}
 }
