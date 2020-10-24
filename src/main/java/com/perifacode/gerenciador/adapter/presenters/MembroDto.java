@@ -1,9 +1,16 @@
 package com.perifacode.gerenciador.adapter.presenters;
 
+import java.time.LocalDate;
+import java.util.List;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 public class MembroDto {
+
+  private long id;
 
   @Email
   @NotBlank
@@ -14,22 +21,24 @@ public class MembroDto {
 
   private boolean aceitePolitica;
 
-  public String getEmail() {
+  private String getEmail() {
     return email;
   }
 
-  public String getUsuario() {
+  private String getUsuario() {
     return usuario;
   }
 
-  public boolean isAceitePolitica() {
+  private boolean isAceitePolitica() {
     return aceitePolitica;
   }
 
-  public MembroDto(
-      @Email @NotBlank String email, @NotBlank String usuario, boolean aceitePolitica) {
-    this.email = email;
-    this.usuario = usuario;
-    this.aceitePolitica = aceitePolitica;
-  }
+  private LocalDate dataInclusao;
+
+  private LocalDate dataAlteracao;
+
+  private List<String> interesses;
+
+  private boolean ativo;
+
 }
