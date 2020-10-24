@@ -1,11 +1,8 @@
 package com.perifacode.gerenciador.usecase;
 
-import com.perifacode.gerenciador.adapter.presenters.MembroDto;
-import com.perifacode.gerenciador.driver.Repository.MembroRepository;
+import com.perifacode.gerenciador.driver.repository.MembroRepository;
 import com.perifacode.gerenciador.entity.Membro;
 import com.perifacode.gerenciador.usecase.excecao.MembroExistenteException;
-import java.util.Optional;
-import javax.swing.text.html.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
