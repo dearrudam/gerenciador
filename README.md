@@ -68,18 +68,17 @@ Inicialmente fomos o que levantamos para iniciar o desenvolvimento.
 ## Como contribuir:
 
 ###  Acesso:
-- Caso não seja membro do Perifacode, acesse https://docs.google.com/forms/d/e/1FAIpQLSd9ptSntk4FklmD-Lb0B0C6KL2xgijym2jx1G-FQVw8IIvxYQ/viewform realize o seu cadastro e entre no Discord.
-- Solicite acesso ao repositório pelo canal #plantao-java do Discord do Perifacode marcando @psanrosa13 com seu usuario do Github
+    - Caso não seja membro do Perifacode, acesse https://docs.google.com/forms/d/e/1FAIpQLSd9ptSntk4FklmD-Lb0B0C6KL2xgijym2jx1G-FQVw8IIvxYQ/viewform realize o seu cadastro e entre no Discord.
+    - Solicite acesso ao repositório pelo canal #plantao-java do Discord do Perifacode marcando @psanrosa13 com seu usuario do Github
 
 ### Task:
 
-- Para saber o que esta pendente no projeto verifique no README do projeto onde possuem as features pendentes
-- Verifique também se não esta em execução a feature através do Kaban do Projeto em (https://github.com/psanrosa13/gerenciador/projects/1)[https://github.com/psanrosa13/gerenciador/projects/1]
-- Crie uma task da feature no Kaban do Projeto, indo na aba Projects do repositório do projeto do Github:
-  https://github.com/psanrosa13/gerenciador/projects/1
-- Crie na coluna To do
-- Para o nome da Task siga o padrão nomedoserviço + data modelo BR + hora, exemplo : membro241020201651 , caso sua melhoria não seja em um serviço específico coloque gerenciador + data modelo BR + hora
-- Não esqueça de movê-la para In progress
+    - Para saber o que esta pendente no projeto verifique no README do projeto onde possuem as features pendentes
+    - Verifique também se não esta em execução a feature através do Kaban do Projeto em (https://github.com/psanrosa13/gerenciador/projects/1)[https://github.com/psanrosa13/gerenciador/projects/1]
+    - Crie uma task da feature no Kaban do Projeto, indo na aba Projects do repositório do projeto do Github:https://github.com/psanrosa13/gerenciador/projects/1
+    - Crie na coluna To do
+    - Para o nome da Task siga o padrão nomedoserviço + data modelo BR + hora, exemplo : membro241020201651 , caso sua melhoria não seja em um serviço específico coloque gerenciador + data modelo BR + hora
+    - Não esqueça de movê-la para In progress
 
 ### Branch:
     - Crie a branch a partir da develop
@@ -90,4 +89,11 @@ Inicialmente fomos o que levantamos para iniciar o desenvolvimento.
     - Após um Pull Request ser aprovado e mergeado na Develop ele deve ser Release e deve ser aberto Pull Request da Develop para a Master
 
 ### Documentação
-Toda e qualquer informação do projeto que seja importante deve estar no README ou na Wiki do projeto https://github.com/psanrosa13/gerenciador/wiki
+    Toda e qualquer informação do projeto que seja importante deve estar no README ou na Wiki do projeto https://github.com/psanrosa13/gerenciador/wiki
+
+### Arquitetura
+    A arquitetura do projeto segue o padrão Clean Arch, tente seguir o modelo, caso tenha dúvidas acesse https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
+
+### Build
+    Ao realizar o build será feita análise de código pelo CheckStyle, pode ser que sejam apontados erros de Code Style, para saber o que corrigir você deve abrir o arquivo main.html e ver o erro que eve ser corrigido
+    
