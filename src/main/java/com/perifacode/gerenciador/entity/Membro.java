@@ -2,6 +2,7 @@ package com.perifacode.gerenciador.entity;
 
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Membro {
 
   private LocalDate dataAlteracao;
 
+  @ElementCollection
   private List<String> interesses;
 
   private boolean ativo;
