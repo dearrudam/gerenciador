@@ -2,7 +2,10 @@ package com.perifacode.gerenciador.adapter.common;
 
 import com.perifacode.gerenciador.adapter.presenters.TipoIniciativaDto;
 import com.perifacode.gerenciador.entity.TipoIniciativa;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+@Component
 public class TipoIniciativaConverter extends Converter<TipoIniciativa, TipoIniciativaDto> {
 
   public TipoIniciativaConverter() {
