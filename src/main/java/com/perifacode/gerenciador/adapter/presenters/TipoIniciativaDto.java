@@ -32,10 +32,8 @@ public class TipoIniciativaDto {
   @NotBlank
   private String descricao;
 
-  @NotBlank
   private LocalDateTime dataCadastro;
 
-  @NotBlank
   private LocalDateTime dataAtualizacao;
 
   private boolean ativo;
