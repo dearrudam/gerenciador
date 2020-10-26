@@ -1,9 +1,11 @@
 package com.perifacode.gerenciador.adapter.controller;
 
 import com.perifacode.gerenciador.adapter.common.Converter;
+import com.perifacode.gerenciador.adapter.common.TipoIniciativaConverter;
 import com.perifacode.gerenciador.adapter.presenters.TipoIniciativaDto;
 import com.perifacode.gerenciador.driver.repository.TipoIniciativaRepository;
 import com.perifacode.gerenciador.entity.TipoIniciativa;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,7 @@ public class TipoIniciativaController {
   private TipoIniciativaRepository tipoIniciativaRepository;
 
   @Autowired
-  private Converter<TipoIniciativa,TipoIniciativaDto> converter;
+  private TipoIniciativaConverter converter;
 
   @PostMapping
   public ResponseEntity<TipoIniciativaDto> inserir(@RequestBody TipoIniciativaDto tipoIniciativa) {
@@ -34,10 +36,15 @@ public class TipoIniciativaController {
   @GetMapping("/{codTipoIniciativa}")
   public ResponseEntity<TipoIniciativaDto> buscar(
       @PathVariable("codTipoIniciativa") String codTipoIniciativa) {
-    return ResponseEntity.ok(
-        converter.convertFromDto(
-            tipoIniciativaRepository.findByCodigo(
-                codTipoIniciativa).get()));
+    Optional<TipoIniciativa> optionalTipoIniciativa = tipoIniciativaRepository.findByCodigo(
+        codTipoIniciativa);
+    if(optionalTipoIniciativa.isEmpty()){
+      return ResponseEntity.notFound().build();
+    }else {
+      return ResponseEntity.ok(
+          converter.convertFromDto(
+              optionalTipoIniciativa.get()));
+    }
   }
 
 }
