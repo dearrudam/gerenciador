@@ -22,7 +22,6 @@ public class TipoIniciativaConverter extends Converter<TipoIniciativa, TipoInici
   private static TipoIniciativa convertToEntity(TipoIniciativaDto tipoIniciativaDto) {
     return new TipoIniciativa(tipoIniciativaDto.getId(), tipoIniciativaDto.getCodigo(),
         tipoIniciativaDto.getTitulo(), tipoIniciativaDto.getDescricao(),
-        tipoIniciativaDto.getDataCadastro(), tipoIniciativaDto.getDataAtualizacao(),
         tipoIniciativaDto.isAtivo());
   }
 
