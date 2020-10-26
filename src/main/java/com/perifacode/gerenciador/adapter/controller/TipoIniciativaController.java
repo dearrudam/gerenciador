@@ -29,8 +29,8 @@ public class TipoIniciativaController {
   public ResponseEntity<TipoIniciativaDto> inserir(@RequestBody TipoIniciativaDto tipoIniciativa) {
     return ResponseEntity.ok(
         converter.convertFromDto(
-          tipoIniciativaRepository.save(
-            converter.convertFromEntity(tipoIniciativa))));
+            tipoIniciativaRepository.save(
+                converter.convertFromEntity(tipoIniciativa))));
   }
 
   @GetMapping("/{codTipoIniciativa}")
@@ -38,9 +38,9 @@ public class TipoIniciativaController {
       @PathVariable("codTipoIniciativa") String codTipoIniciativa) {
     Optional<TipoIniciativa> optionalTipoIniciativa = tipoIniciativaRepository.findByCodigo(
         codTipoIniciativa);
-    if(optionalTipoIniciativa.isEmpty()){
+    if (optionalTipoIniciativa.isEmpty()) {
       return ResponseEntity.notFound().build();
-    }else {
+    } else {
       return ResponseEntity.ok(
           converter.convertFromDto(
               optionalTipoIniciativa.get()));
