@@ -6,9 +6,13 @@ import com.perifacode.gerenciador.entity.Membro;
 import com.perifacode.gerenciador.usecase.MembroService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,19 +27,25 @@ public class MembroController {
   @PostMapping
   public MembroDto incluir(@RequestBody @Valid MembroDto membroDto) {
     Membro membro = MembroConverter.membroDtoToMembro(membroDto);
-
     membro = membroService.incluir(membro);
-
     return MembroConverter.membroToMembroDto(membro);
   }
 
   @GetMapping(path = "{email}")
   public MembroDto buscar(@PathVariable("email") String email) {
-
     Membro membro = membroService.buscar(email);
-
     return MembroConverter.membroToMembroDto(membro);
+  }
 
+  @PutMapping(value = "/{membro_id}")
+  public ResponseEntity<MembroDto> updateMembro(@PathVariable("membro_id") Long membroId,
+                                                @RequestBody MembroDto membro) {
+    return ResponseEntity.ok(membroService.atualizar(membroId, membro));
+  }
+
+  @DeleteMapping(value = "/{membro_id}")
+  public ResponseEntity<Boolean> deleteMembro(@PathVariable("membro_id") Long membroId) {
+    return new ResponseEntity(membroService.inativaMembro(membroId), HttpStatus.ACCEPTED);
   }
 
 }
