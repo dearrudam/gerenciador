@@ -9,10 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Membro {
+public class Membro extends BaseEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
   private String email;
@@ -20,10 +20,6 @@ public class Membro {
   private String usuario;
 
   private boolean aceitePolitica;
-
-  private LocalDate dataInclusao;
-
-  private LocalDate dataAlteracao;
 
   @ElementCollection
   private List<String> interesses;
@@ -34,21 +30,17 @@ public class Membro {
   }
 
   public Membro(String email, String usuario, boolean aceitePolitica,
-                LocalDate dataInclusao, LocalDate dataAlteracao,
                 List<String> interesses, boolean ativo) {
     this.email = email;
     this.usuario = usuario;
     this.aceitePolitica = aceitePolitica;
-    this.dataInclusao = dataInclusao;
-    this.dataAlteracao = dataAlteracao;
     this.interesses = interesses;
     this.ativo = ativo;
   }
 
   public static Membro construirNovoMembro(String email, String usuario,
                                            boolean aceitePolitica, List<String> interesses) {
-    return new Membro(email, usuario, aceitePolitica,
-        LocalDate.now(), LocalDate.now(), interesses, true);
+    return new Membro(email, usuario, aceitePolitica, interesses, true);
   }
 
   public String getEmail() {
@@ -64,15 +56,7 @@ public class Membro {
   }
 
   public long getId() {
-    return id;
-  }
-
-  public LocalDate getDataInclusao() {
-    return dataInclusao;
-  }
-
-  public LocalDate getDataAlteracao() {
-    return dataAlteracao;
+    return this.id;
   }
 
   public List<String> getInteresses() {
@@ -82,4 +66,29 @@ public class Membro {
   public boolean isAtivo() {
     return ativo;
   }
+
+  public void setAtivo(boolean ativo) {
+    this.ativo = ativo;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public void setUsuario(String usuario) {
+    this.usuario = usuario;
+  }
+
+  public void setAceitePolitica(boolean aceitePolitica) {
+    this.aceitePolitica = aceitePolitica;
+  }
+
+  public void setInteresses(List<String> interesses) {
+    this.interesses = interesses;
+  }
+
 }

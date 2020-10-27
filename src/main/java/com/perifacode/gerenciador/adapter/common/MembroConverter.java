@@ -13,7 +13,7 @@ public class MembroConverter {
   public static MembroDto membroToMembroDto(Membro membro) {
     return new MembroDto(membro.getId(), membro.getEmail(), membro.getUsuario(),
         membro.isAceitePolitica(),
-        membro.getDataInclusao(), membro.getDataAlteracao(), membro.getInteresses(),
+        membro.getDataCadastro(), membro.getDataAtualizacao(), membro.getInteresses(),
         membro.isAtivo());
   }
 }
