@@ -34,9 +34,9 @@ public class MembroService {
   public Membro buscar(String email) {
     Optional<Membro> byEmailAndAtivo = membroRepository
         .findByEmailAndAtivo(email, true);
-    if(byEmailAndAtivo.isPresent()) {
+    if (byEmailAndAtivo.isPresent()) {
       return byEmailAndAtivo.get();
-    }else{
+    } else {
       throw new MembroInexistenteException(String.format("membro email %s não encontrado", email));
     }
   }
