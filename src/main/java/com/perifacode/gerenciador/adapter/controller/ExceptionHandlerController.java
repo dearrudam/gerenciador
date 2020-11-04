@@ -1,6 +1,6 @@
 package com.perifacode.gerenciador.adapter.controller;
 
-import javax.validation.ConstraintViolationException;
+import com.perifacode.gerenciador.usecase.excecao.MembroExistenteException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,8 +17,19 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
       value = {DataIntegrityViolationException.class})
   protected ResponseEntity<Object> handleConflict(
       DataIntegrityViolationException ex, WebRequest request) {
-    String bodyOfResponse = "Falha ao efetuar a requisição, conflito";
+    String bodyOfResponse = "Falha ao efetuar a requisição, conflito " + ex.getMessage();
     return handleExceptionInternal(ex, bodyOfResponse,
         new HttpHeaders(), HttpStatus.CONFLICT, request);
   }
+
+  @ExceptionHandler(
+      value = {MembroExistenteException.class})
+  protected ResponseEntity<Object> notFound(
+      MembroExistenteException ex, WebRequest request) {
+    String bodyOfResponse = ex.getMessage();
+    return handleExceptionInternal(ex, bodyOfResponse,
+        new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+  }
+
+
 }
