@@ -19,19 +19,26 @@ public class MembroService {
   @Autowired
   private MembroRepository membroRepository;
 
+  @Autowired
+  private MembroConverter membroConverter;
+
   public Membro incluir(Membro membro) {
     membroRepository
         .findByEmailAndAtivo(membro.getEmail(), true)
         .ifPresent((x) -> {
-          throw new MembroExistenteException();
+          throw new MembroExistenteException("Não pode inserir Membro, email duplicado", "email");
         });
     return membroRepository.save(membro);
   }
 
   public Membro buscar(String email) {
-    return membroRepository
-        .findByEmailAndAtivo(email, true)
-        .orElseThrow(MembroExistenteException::new);
+    Optional<Membro> byEmailAndAtivo = membroRepository
+        .findByEmailAndAtivo(email, true);
+    if(byEmailAndAtivo.isPresent()) {
+      return byEmailAndAtivo.get();
+    }else{
+      throw new MembroInexistenteException(String.format("membro email %s não encontrado", email));
+    }
   }
 
   public MembroDto atualizar(Long membroId, MembroDto membro) {
@@ -45,7 +52,7 @@ public class MembroService {
       }
       BeanUtils.copyProperties(membro, target);
       target = membroRepository.save(target);
-      return MembroConverter.membroToMembroDto(target);
+      return membroConverter.convertFromEntity(target);
     }
   }
 

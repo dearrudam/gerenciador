@@ -24,17 +24,20 @@ public class MembroController {
   @Autowired
   private MembroService membroService;
 
+  @Autowired
+  private MembroConverter membroConverter;
+
   @PostMapping
   public MembroDto incluir(@RequestBody @Valid MembroDto membroDto) {
     Membro membro = MembroConverter.membroDtoToMembro(membroDto);
     membro = membroService.incluir(membro);
-    return MembroConverter.membroToMembroDto(membro);
+    return membroConverter.convertFromEntity(membro);
   }
 
   @GetMapping(path = "{email}")
   public MembroDto buscar(@PathVariable("email") String email) {
     Membro membro = membroService.buscar(email);
-    return MembroConverter.membroToMembroDto(membro);
+    return membroConverter.convertFromEntity(membro);
   }
 
   @PutMapping(value = "/{membro_id}")
