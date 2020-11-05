@@ -26,13 +26,13 @@ Inicialmente fomos o que levantamos para iniciar o desenvolvimento.
 #### Serviço de Membros
 - [x]  Quais informações um membro tem ? Inicialmente ele tem um e-mail, usuario, aceite, data de inclusão, data de alteração e interesses(lista de palavras que estão ligados ao que o membro gosta) e campo de ativo ( indicando para membros que não fazem mais parte como inativo)
 - [x]  Criar membro,
-- [ ]  Atualizar e-mail do membro,
-- [ ]  Excluir lógicamente o membro (inativar),
-- [ ]  Pesquisar membro por usuário ou email.
-- [ ]  Pesquisar membro por data de inclusão.
-- [ ]  Pesquisar membro por data de atualização.
-- [ ]  Pesquisar membros que são voluntários.
-- [ ]  Pesquisar membros que são voluntários por iniciativa
+- [x]  Atualizar e-mail do membro,
+- [x]  Excluir lógicamente o membro (inativar),
+- [x]  Pesquisar membro por usuário ou email.
+- [x]  Pesquisar membro por data de inclusão.
+- [x]  Pesquisar membro por data de atualização.
+- [x]  Pesquisar membros que são voluntários.
+- [x]  Pesquisar membros que são voluntários por iniciativa
     
 #### Serviço de Tipos de Iniciativas
 - [ ]  O que um serviço de tipo tem de informação? código, Titulo, descrição, data de cadastro, data de atualização, ativo
