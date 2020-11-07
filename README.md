@@ -26,31 +26,34 @@ Inicialmente fomos o que levantamos para iniciar o desenvolvimento.
 #### Serviço de Membros
 - [x]  Quais informações um membro tem ? Inicialmente ele tem um e-mail, usuario, aceite, data de inclusão, data de alteração e interesses(lista de palavras que estão ligados ao que o membro gosta) e campo de ativo ( indicando para membros que não fazem mais parte como inativo)
 - [x]  Criar membro,
-- [ ]  Atualizar e-mail do membro,
-- [ ]  Excluir lógicamente o membro (inativar),
+- [x]  Atualizar membro,
+- [x]  Excluir lógicamente o membro (inativar),
+- [ ]  Pesquisar membro por id.
+- [ ]  Pesquisar membros.(lista)
 - [ ]  Pesquisar membro por usuário ou email.
-- [ ]  Pesquisar membro por data de inclusão.
-- [ ]  Pesquisar membro por data de atualização.
-- [ ]  Pesquisar membros que são voluntários.
+- [ ]  Pesquisar membros por data de inclusão ou data de atualização, se ele é voluntário ou não
 - [ ]  Pesquisar membros que são voluntários por iniciativa
     
 #### Serviço de Tipos de Iniciativas
-- [ ]  O que um serviço de tipo tem de informação? código, Titulo, descrição, data de cadastro, data de atualização, ativo
-- [ ]  Criar cadastrado de Tipos de Iniciativas
-- [ ]  Atualizar Descrição e nome do tipo de iniciativa
-- [ ]  Busca de tipos de Iniciativa
-- [ ]  Pesquisa iniciativa por data de criação
-- [ ]  Pesquisa iniciativa por data de inativação
+- [x]  O que um serviço de tipo tem de informação? código, Titulo, descrição, data de cadastro, data de atualização, ativo
+- [x]  Criar cadastrado de Tipos de Iniciativas
+- [ ]  Atualizar tipo de iniciativa
+- [ ]  Lista de  tipos de iniciativas
+- [ ]  Inativar tipo de iniciativa
+- [x]  Busca de tipos de Iniciativa por código 
+- [ ]  Busca de tipos de Iniciativa (lista), com filtros de data de criação, data de inativação e por status (ativo ou inativo)
     
 #### Serviço de Iniciativa
-- [ ]  Quais campos deve ter neste serviço? Código, Titulo, data de cadastro, data de atualização, ativo, iniciativa, lista de responsáveis.
-- [ ]  Criar iniciativa ( ela deve ter um tipo vinculado a ela e uma lista de voluntários responsáveis, considerando que nesta lista, deve conter pelo menos 1 voluntário, isso para evitar que uma iniciativa seja criada sem um reposável inicial )
+- [x]  Quais campos deve ter neste serviço? Código, Titulo, data de cadastro, data de atualização, ativo, iniciativa, lista de responsáveis.
+- [x]  Criar iniciativa ( ela deve ter um tipo vinculado a ela e uma lista de voluntários responsáveis, considerando que nesta lista, deve conter pelo menos 1 voluntário, isso para evitar que uma iniciativa seja criada sem um reposável inicial )
 - [ ]  Atualizar iniciativa
 - [ ]  Inativar iniciativa
+- [ ]  Consultar iniciativa por id
+- [ ]  Consultar iniciativas - Lista
 - [ ]  Consultar iniciativas por data de cadastro
 - [ ]  Consultar iniciativas por tipo
 
-#### Serviço de Agenda
+#### Serviço de Grade de atividades da comunidade
 - [ ]  Quais campo este serviço deve possuir? Data inicio, Data fim, horário inicio, horário fim, responsavel pelo agendamento, iniciativas, membros que querem participar, lista de notas .
 - [ ]  O recurso de agenda permite membros e voluntários registrarem datas de encontros ou ações de inicitaivas.
 - [ ]  Na agenda será possível criar compromissos por data e horário
@@ -73,16 +76,14 @@ Inicialmente fomos o que levantamos para iniciar o desenvolvimento.
 
 ### Task:
 
-    - Para saber o que esta pendente no projeto verifique no README do projeto onde possuem as features pendentes
-    - Verifique também se não esta em execução a feature através do Kaban do Projeto em (https://github.com/psanrosa13/gerenciador/projects/1)[https://github.com/psanrosa13/gerenciador/projects/1]
-    - Crie uma task da feature no Kaban do Projeto, indo na aba Projects do repositório do projeto do Github:https://github.com/psanrosa13/gerenciador/projects/1
-    - Crie na coluna To do
-    - Para o nome da Task siga o padrão nomedoserviço + data modelo BR + hora, exemplo : membro241020201651 , caso sua melhoria não seja em um serviço específico coloque gerenciador + data modelo BR + hora
-    - Não esqueça de movê-la para In progress
+    - Verifique qual Task esta em prioridade (de cima para baixo)
+    - Arraste a task que irá desenvolver para a coluna in progress
+    - Preencha seu nome na Task
+    - Não esqueça de movê-la para In progress para sinalizar que esta em andamento.
 
 ### Branch:
     - Crie a branch a partir da develop
-    - O nome da sua branch deve seguir o padrão feature + identificação da task, exemplo: feature/membro241020201651
+    - O nome da sua branch deve seguir o padrão feature + identificação da task, exemplo: feature/membro
 
 ### Fluxo:
     - Após terminar o desenvolvimento mude sua task para a coluna Code Review e abra Pull Request da sua branch para a develop
