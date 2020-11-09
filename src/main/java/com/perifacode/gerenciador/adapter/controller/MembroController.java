@@ -4,6 +4,7 @@ import com.perifacode.gerenciador.adapter.common.MembroConverter;
 import com.perifacode.gerenciador.adapter.presenters.MembroDto;
 import com.perifacode.gerenciador.entity.Membro;
 import com.perifacode.gerenciador.usecase.MembroService;
+import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,10 +35,13 @@ public class MembroController {
     return membroConverter.convertFromEntity(membro);
   }
 
-  @GetMapping(path = "{email}")
-  public MembroDto buscar(@PathVariable("email") String email) {
-    Membro membro = membroService.buscar(email);
-    return membroConverter.convertFromEntity(membro);
+  @GetMapping(path = "{id}")
+  public ResponseEntity<MembroDto> buscarMembroId(@PathVariable("id") long id) {
+    try {
+      return new ResponseEntity<>(membroService.buscarMembroId(id), HttpStatus.FOUND);
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
   }
 
   @PutMapping(value = "/{membro_id}")
