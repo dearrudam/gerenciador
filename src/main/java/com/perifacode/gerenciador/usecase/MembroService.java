@@ -10,7 +10,6 @@ import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,16 +28,6 @@ public class MembroService {
           throw new MembroExistenteException("Não pode inserir Membro, email duplicado", "email");
         });
     return membroRepository.save(membro);
-  }
-
-  public Membro buscar(String email) {
-    Optional<Membro> byEmailAndAtivo = membroRepository
-        .findByEmailAndAtivo(email, true);
-    if (byEmailAndAtivo.isPresent()) {
-      return byEmailAndAtivo.get();
-    } else {
-      throw new MembroInexistenteException(String.format("membro email %s não encontrado", email));
-    }
   }
 
   public MembroDto atualizar(Long membroId, MembroDto membro) {
@@ -65,6 +54,15 @@ public class MembroService {
       target.setAtivo(false);
       membroRepository.save(target);
       return true;
+    }
+  }
+
+  public MembroDto buscarMembroId(long id) {
+    Optional<Membro> membroOptional = membroRepository.findById(id);
+    if (membroOptional.isPresent()) {
+      return membroConverter.convertFromEntity(membroOptional.get());
+    } else {
+      throw new MembroInexistenteException(String.format("Membro com id %s não existe", id));
     }
   }
 
