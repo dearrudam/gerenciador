@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class IniciativaService {
 
-    @Autowired
-    private IniciativaRepository iniciativaRepository;
+  @Autowired
+  private IniciativaRepository iniciativaRepository;
 
-    public Iniciativa incluir(Iniciativa iniciativa) {
-        iniciativaRepository
-                .findByTituloAndAtivo(iniciativa.getTitulo(), true)
-                .ifPresent((x) -> {
-                    throw new IniciativaExistenteException("Iniciativa existente!");
-                });
-        return iniciativaRepository.save(iniciativa);
-    }
+  public Iniciativa incluir(Iniciativa iniciativa) {
+    iniciativaRepository
+            .findByTituloAndAtivo(iniciativa.getTitulo(), true)
+            .ifPresent((x) -> {
+                throw new IniciativaExistenteException("Iniciativa existente!");
+            });
+    return iniciativaRepository.save(iniciativa);
+  }
 }
