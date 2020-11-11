@@ -2,10 +2,11 @@ package com.perifacode.gerenciador.adapter.presenters;
 
 import com.perifacode.gerenciador.entity.Membro;
 import com.perifacode.gerenciador.entity.TipoIniciativa;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

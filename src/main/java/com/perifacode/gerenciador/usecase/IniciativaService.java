@@ -16,7 +16,7 @@ public class IniciativaService {
     iniciativaRepository
             .findByTituloAndAtivo(iniciativa.getTitulo(), true)
             .ifPresent((x) -> {
-                throw new IniciativaExistenteException("Iniciativa existente!");
+              throw new IniciativaExistenteException("Iniciativa existente!");
             });
     return iniciativaRepository.save(iniciativa);
   }
