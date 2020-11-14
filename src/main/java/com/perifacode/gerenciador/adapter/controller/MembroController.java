@@ -4,6 +4,7 @@ import com.perifacode.gerenciador.adapter.common.MembroConverter;
 import com.perifacode.gerenciador.adapter.presenters.MembroDto;
 import com.perifacode.gerenciador.entity.Membro;
 import com.perifacode.gerenciador.usecase.MembroService;
+import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -53,6 +55,12 @@ public class MembroController {
   @DeleteMapping(value = "/{membro_id}")
   public ResponseEntity<Boolean> deleteMembro(@PathVariable("membro_id") Long membroId) {
     return new ResponseEntity(membroService.inativaMembro(membroId), HttpStatus.ACCEPTED);
+  }
+
+  @GetMapping()
+  public List<MembroDto> buscarVoluntarios(@RequestParam boolean filtroVoluntario) {
+    return (List<MembroDto>) membroConverter.convertFromDto(
+        (MembroDto) membroService.buscarTodos(filtroVoluntario));
   }
 
 }

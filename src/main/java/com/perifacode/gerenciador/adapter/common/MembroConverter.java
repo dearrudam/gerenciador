@@ -2,6 +2,7 @@ package com.perifacode.gerenciador.adapter.common;
 
 import com.perifacode.gerenciador.adapter.presenters.MembroDto;
 import com.perifacode.gerenciador.entity.Membro;
+import java.util.List;
 import java.util.function.Function;
 import org.springframework.stereotype.Component;
 
@@ -23,4 +24,5 @@ public class MembroConverter extends Converter<MembroDto, Membro> {
         membro.getDataCadastro(), membro.getDataAtualizacao(), membro.getInteresses(),
         membro.isAtivo());
   }
+
 }
