@@ -65,4 +65,5 @@ public class MembroService {
       throw new MembroInexistenteException(String.format("Membro com id %s não existe", id));
     }
   }
+
 }
