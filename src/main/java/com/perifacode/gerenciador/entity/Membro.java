@@ -4,9 +4,14 @@ import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Membro extends BaseEntity {
@@ -25,6 +30,9 @@ public class Membro extends BaseEntity {
   private List<String> interesses;
 
   private boolean ativo;
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  private List<Iniciativa> iniciativas;
 
   public Membro() {
   }
@@ -91,4 +99,11 @@ public class Membro extends BaseEntity {
     this.interesses = interesses;
   }
 
+  public List<Iniciativa> getIniciativas() {
+    return iniciativas;
+  }
+
+  public void setIniciativas(List<Iniciativa> iniciativas) {
+    this.iniciativas = iniciativas;
+  }
 }

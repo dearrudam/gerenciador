@@ -6,7 +6,9 @@ import com.perifacode.gerenciador.driver.repository.MembroRepository;
 import com.perifacode.gerenciador.entity.Membro;
 import com.perifacode.gerenciador.usecase.excecao.MembroExistenteException;
 import com.perifacode.gerenciador.usecase.excecao.MembroInexistenteException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -66,4 +68,13 @@ public class MembroService {
     }
   }
 
+  public List<Membro> buscarTodos(boolean filtroVoluntario) {
+     List<Membro> membros = membroRepository.findAll();
+     if(filtroVoluntario) {
+       return membros.stream().filter(membro -> !membro.getIniciativas().isEmpty()).collect(
+           Collectors.toList());
+     }
+
+     return membros;
+  }
 }
