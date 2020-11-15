@@ -69,12 +69,12 @@ public class MembroService {
   }
 
   public List<Membro> buscarTodos(boolean filtroVoluntario) {
-     List<Membro> membros = membroRepository.findAll();
-     if(filtroVoluntario) {
-       return membros.stream().filter(membro -> !membro.getIniciativas().isEmpty()).collect(
-           Collectors.toList());
-     }
+    List<Membro> membros = membroRepository.findAll();
+    if (filtroVoluntario) {
+      return membros.stream().filter(membro -> !membro.getIniciativas().isEmpty()).collect(
+          Collectors.toList());
+    }
 
-     return membros;
+    return membros;
   }
 }
