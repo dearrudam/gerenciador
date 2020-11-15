@@ -72,7 +72,7 @@ Inicialmente fomos o que levantamos para iniciar o desenvolvimento.
 
 ###  Acesso:
     - Caso não seja membro do Perifacode, acesse https://docs.google.com/forms/d/e/1FAIpQLSd9ptSntk4FklmD-Lb0B0C6KL2xgijym2jx1G-FQVw8IIvxYQ/viewform realize o seu cadastro e entre no Discord.
-    - Solicite acesso ao repositório pelo canal #plantao-java do Discord do Perifacode marcando @psanrosa13 com seu usuario do Github
+    - Solicite acesso ao repositório pelo canal #plantao-java do Discord do Perifacode marcando @Maximillian Arruda#8146 com seu usuario do Github
 
 ### Task:
 
@@ -90,7 +90,7 @@ Inicialmente fomos o que levantamos para iniciar o desenvolvimento.
     - Após um Pull Request ser aprovado e mergeado na Develop ele deve ser Release e deve ser aberto Pull Request da Develop para a Master
 
 ### Documentação
-    Toda e qualquer informação do projeto que seja importante deve estar no README ou na Wiki do projeto https://github.com/psanrosa13/gerenciador/wiki
+    Toda e qualquer informação do projeto que seja importante deve estar no README ou na Wiki do projeto https://github.com/dearrudam/gerenciador/wiki
 
 ### Arquitetura
     A arquitetura do projeto segue o padrão Clean Arch, tente seguir o modelo, caso tenha dúvidas acesse https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
