@@ -6,15 +6,21 @@ import com.perifacode.gerenciador.driver.repository.MembroRepository;
 import com.perifacode.gerenciador.entity.Membro;
 import com.perifacode.gerenciador.usecase.excecao.MembroExistenteException;
 import com.perifacode.gerenciador.usecase.excecao.MembroInexistenteException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MembroService {
+
+  @Autowired
+  private MembroService membroService;
 
   @Autowired
   private MembroRepository membroRepository;
@@ -66,6 +72,18 @@ public class MembroService {
       membroRepository.save(target);
       return true;
     }
+  }
+
+  public Page<MembroDto> buscarCriadosDepoisDe(LocalDate data, Pageable page) {
+    Page<Membro> pageEntity = membroRepository
+        .findByDataCadastroBetween(data.atStartOfDay(), LocalDateTime.now(), page);
+    return membroConverter.createPageFromEntities(pageEntity);
+  }
+
+  public Page<MembroDto> buscarCriadosEntre(LocalDate dataIni, LocalDate dataFim, Pageable page) {
+    Page<Membro> pageEntity = membroRepository
+        .findByDataCadastroBetween(dataIni.atStartOfDay(), dataFim.atTime(23, 59, 59), page);
+    return membroConverter.createPageFromEntities(pageEntity);
   }
 
 }

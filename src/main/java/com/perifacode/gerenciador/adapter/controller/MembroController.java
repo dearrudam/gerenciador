@@ -4,15 +4,15 @@ import com.perifacode.gerenciador.adapter.common.MembroConverter;
 import com.perifacode.gerenciador.adapter.presenters.MembroDto;
 import com.perifacode.gerenciador.entity.Membro;
 import com.perifacode.gerenciador.usecase.MembroService;
-import java.awt.print.Pageable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import org.apache.coyote.Response;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -50,28 +50,36 @@ public class MembroController {
     return membroConverter.convertFromEntity(membro);
   }
 
+  private static final DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
   @GetMapping(path = "/")
-  public ResponseEntity<String> buscarByDataInclusao(
+  public ResponseEntity<Page<MembroDto>> buscarByDataInclusao(
       @Valid
-        @RequestParam(name = "dataInclusao.range", required = false)
-          @Size(max = 2, min = 2)
+      @RequestParam(name = "dataInclusao.range", required = false)
+      @Size(max = 2, min = 2)
           List<@Pattern(regexp = "\\d{2}-\\d{2}-\\d{4}") String> dataInclusaoRange,
       @Valid @Pattern(regexp = "\\d{2}-\\d{2}-\\d{4}")
-        @RequestParam(name = "dataInclusao", required = false) String dataInclusao,
+      @RequestParam(name = "dataInclusao", required = false) String dataInclusao,
       @Valid @Pattern(regexp = "\\d{2}-\\d{2}-\\d{4}")
-        @RequestParam(name = "dataInclusao.ge", required = false) String dataInclusaoGe,
-      @RequestParam(defaultValue = "0") int page,
-      @RequestParam(defaultValue = "20") int size) {
+      @RequestParam(name = "dataInclusao.ge", required = false) String dataInclusaoGe,
+      Pageable pageable) {
 
-
-    if(dataInclusao != null){
-
+    if (dataInclusao != null) {
+      LocalDate data = LocalDate.parse(dataInclusao, dtFormatter);
+      return ResponseEntity.ok(membroService
+          .buscarCriadosEntre(data, data, pageable));
     }
-    if(dataInclusaoGe != null){
-        // busca todos maiores que determinada data
+    if (dataInclusaoGe != null) {
+      // busca todos maiores que determinada data
+      return ResponseEntity.ok(membroService
+          .buscarCriadosDepoisDe(LocalDate.parse(dataInclusaoGe, dtFormatter), pageable));
     }
-    return ResponseEntity.ok( "ok");
+    if (dataInclusaoRange != null) {
+      return ResponseEntity.ok(membroService
+          .buscarCriadosEntre(LocalDate.parse(dataInclusaoRange.get(0), dtFormatter),
+              LocalDate.parse(dataInclusaoRange.get(1), dtFormatter), pageable));
+    }
+    return new ResponseEntity<Page<MembroDto>>(HttpStatus.PRECONDITION_FAILED);
   }
 
 

@@ -21,8 +21,6 @@ public class Membro extends BaseEntity {
 
   private boolean aceitePolitica;
 
-  private MEMBRO_TYPE membroType;
-
   @ElementCollection
   private List<String> interesses;
 
