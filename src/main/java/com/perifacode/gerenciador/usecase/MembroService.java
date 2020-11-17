@@ -20,31 +20,19 @@ import org.springframework.stereotype.Service;
 public class MembroService {
 
   @Autowired
-  private MembroService membroService;
-
-  @Autowired
   private MembroRepository membroRepository;
 
   @Autowired
   private MembroConverter membroConverter;
 
-  public Membro incluir(Membro membro) {
+  public MembroDto incluir(MembroDto membroDto) {
+    Membro membro = membroConverter.convertFromDto(membroDto);
     membroRepository
         .findByEmailAndAtivo(membro.getEmail(), true)
         .ifPresent((x) -> {
           throw new MembroExistenteException("Não pode inserir Membro, email duplicado", "email");
         });
-    return membroRepository.save(membro);
-  }
-
-  public Membro buscar(String email) {
-    Optional<Membro> byEmailAndAtivo = membroRepository
-        .findByEmailAndAtivo(email, true);
-    if (byEmailAndAtivo.isPresent()) {
-      return byEmailAndAtivo.get();
-    } else {
-      throw new MembroInexistenteException(String.format("membro email %s não encontrado", email));
-    }
+    return membroConverter.convertFromEntity(membroRepository.save(membro));
   }
 
   public MembroDto atualizar(Long membroId, MembroDto membro) {
@@ -74,16 +62,50 @@ public class MembroService {
     }
   }
 
-  public Page<MembroDto> buscarCriadosDepoisDe(LocalDate data, Pageable page) {
-    Page<Membro> pageEntity = membroRepository
-        .findByDataCadastroBetween(data.atStartOfDay(), LocalDateTime.now(), page);
-    return membroConverter.createPageFromEntities(pageEntity);
+  public Page<MembroDto> buscarCriadosDepoisDe(LocalDate data, boolean isVoluntario,
+                                               Pageable page) {
+    if (isVoluntario) {
+      return membroConverter.createPageFromEntities(membroRepository
+          .findByIniciativasIsNotNullAndDataCadastroBetween(data.atStartOfDay(),
+              LocalDateTime.now(), page));
+    } else {
+      return membroConverter.createPageFromEntities(membroRepository
+          .findByIniciativasIsNullAndDataCadastroBetween(data.atStartOfDay(),
+              LocalDateTime.now(),
+              page));
+    }
   }
 
-  public Page<MembroDto> buscarCriadosEntre(LocalDate dataIni, LocalDate dataFim, Pageable page) {
-    Page<Membro> pageEntity = membroRepository
-        .findByDataCadastroBetween(dataIni.atStartOfDay(), dataFim.atTime(23, 59, 59), page);
-    return membroConverter.createPageFromEntities(pageEntity);
+  public Page<MembroDto> buscarCriadosEntre(LocalDate dataIni, LocalDate dataFim,
+                                            boolean isVoluntario, Pageable page) {
+    if (isVoluntario) {
+      return membroConverter.createPageFromEntities(membroRepository
+          .findByIniciativasIsNotNullAndDataCadastroBetween(dataIni.atStartOfDay(),
+              dataFim.atTime(23, 59, 59), page));
+    } else {
+      return membroConverter.createPageFromEntities(membroRepository
+          .findByIniciativasIsNullAndDataCadastroBetween(dataIni.atStartOfDay(),
+              dataFim.atTime(23, 59, 59), page));
+    }
   }
+
+  public Page<MembroDto> buscarTodos(boolean isVoluntario, Pageable page) {
+    if (isVoluntario) {
+      return membroConverter
+          .createPageFromEntities(membroRepository.findByIniciativasIsNotNull(page));
+    } else {
+      return membroConverter.createPageFromEntities(membroRepository.findByIniciativasIsNull(page));
+    }
+  }
+
+  public MembroDto buscarMembroId(long id) {
+    Optional<Membro> membroOptional = membroRepository.findById(id);
+    if (membroOptional.isPresent()) {
+      return membroConverter.convertFromEntity(membroOptional.get());
+    } else {
+      throw new MembroInexistenteException(String.format("Membro com id %s não existe", id));
+    }
+  }
+
 
 }
