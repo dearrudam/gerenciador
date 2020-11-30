@@ -1,11 +1,8 @@
 package com.perifacode.gerenciador.adapter.controller;
 
-import com.perifacode.gerenciador.adapter.common.Converter;
-import com.perifacode.gerenciador.adapter.common.TipoIniciativaConverter;
 import com.perifacode.gerenciador.adapter.presenters.TipoIniciativaDto;
-import com.perifacode.gerenciador.driver.repository.TipoIniciativaRepository;
-import com.perifacode.gerenciador.entity.TipoIniciativa;
-import java.util.Optional;
+import com.perifacode.gerenciador.usecase.TipoIniciativaService;
+import com.perifacode.gerenciador.usecase.excecao.Resultado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,30 +17,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class TipoIniciativaController {
 
   @Autowired
-  private TipoIniciativaRepository tipoIniciativaRepository;
-
-  @Autowired
-  private TipoIniciativaConverter converter;
+  private TipoIniciativaService tipoIniciativaService;
 
   @PostMapping
   public ResponseEntity<TipoIniciativaDto> inserir(@RequestBody TipoIniciativaDto tipoIniciativa) {
-    return ResponseEntity.ok(
-        converter.convertFromDto(
-            tipoIniciativaRepository.save(
-                converter.convertFromEntity(tipoIniciativa))));
+    return ResponseEntity.ok(tipoIniciativaService.novaIniciativa(tipoIniciativa));
   }
 
   @GetMapping("/{codTipoIniciativa}")
   public ResponseEntity<TipoIniciativaDto> buscar(
       @PathVariable("codTipoIniciativa") String codTipoIniciativa) {
-    Optional<TipoIniciativa> optionalTipoIniciativa = tipoIniciativaRepository.findByCodigo(
-        codTipoIniciativa);
-    if (optionalTipoIniciativa.isEmpty()) {
-      return ResponseEntity.notFound().build();
-    } else {
+    Resultado<TipoIniciativaDto, RuntimeException> tipoIniciativa =
+        tipoIniciativaService.findByCodigo(
+            codTipoIniciativa);
+    if (tipoIniciativa.isSucess()) {
       return ResponseEntity.ok(
-          converter.convertFromDto(
-              optionalTipoIniciativa.get()));
+          tipoIniciativa.getResult());
+    } else {
+      return ResponseEntity.notFound().build();
     }
   }
 
