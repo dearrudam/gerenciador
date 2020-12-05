@@ -106,4 +106,17 @@ public class Membro extends BaseEntity {
   public void setIniciativas(List<Iniciativa> iniciativas) {
     this.iniciativas = iniciativas;
   }
+
+  @Override
+  public String toString() {
+    return "Membro {" +
+        "id=" + id +
+        ", email='" + email + '\'' +
+        ", usuario='" + usuario + '\'' +
+        ", aceitePolitica=" + aceitePolitica +
+        ", interesses=" + interesses +
+        ", ativo=" + ativo +
+        ", iniciativas=" + iniciativas +
+        '}';
+  }
 }
