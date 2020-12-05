@@ -1,27 +1,21 @@
 package com.perifacode.gerenciador.adapter.controller;
 
-import static org.hamcrest.Matchers.blankOrNullString;
-import static org.hamcrest.Matchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.perifacode.gerenciador.GerenciadorApplication;
-import com.perifacode.gerenciador.GerenciadorApplicationTest;
 import java.util.Arrays;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -45,7 +39,7 @@ class MembroControllerTest {
   @MethodSource("incluirArgs")
   void incluir(String descricao,
                ObjectNode input,
-               HttpStatus expectedStatus ) throws Exception {
+               HttpStatus expectedStatus) throws Exception {
     mockMvc.perform(post("/membros")
         .contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(input)))
@@ -53,7 +47,7 @@ class MembroControllerTest {
         .andExpect(status().is(expectedStatus.value()));
   }
 
-  public static Stream<Arguments> incluirArgs(){
+  public static Stream<Arguments> incluirArgs() {
     JsonNodeFactory jsonNodeFactory = JsonNodeFactory.instance;
     return Stream.of(
         Arguments.of(
@@ -62,7 +56,7 @@ class MembroControllerTest {
                 .objectNode().put("email", "dearrudam@gmail.com")
                 .put("usuario", "Maximillian")
                 .put("aceitePolitica", true)
-                .putPOJO("interesses", Arrays.asList("java","spring"))
+                .putPOJO("interesses", Arrays.asList("java", "spring"))
                 .put("ativo", true),
             HttpStatus.OK
         ),
@@ -72,7 +66,7 @@ class MembroControllerTest {
                 .objectNode().put("email", "dearrudamgmail.com")
                 .put("usuario", "Maximillian")
                 .put("aceitePolitica", true)
-                .putPOJO("interesses", Arrays.asList("java","spring"))
+                .putPOJO("interesses", Arrays.asList("java", "spring"))
                 .put("ativo", true),
             HttpStatus.BAD_REQUEST
         )
