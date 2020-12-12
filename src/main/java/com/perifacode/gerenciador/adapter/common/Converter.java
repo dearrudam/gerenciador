@@ -4,8 +4,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
 
-public class Converter<T,U> {
+public class Converter<T, U> {
 
   private final Function<T, U> fromDto;
   private final Function<U, T> fromEntity;
@@ -29,6 +30,11 @@ public class Converter<T,U> {
 
   public final List<T> createFromEntities(final Collection<U> entities) {
     return entities.stream().map(this::convertFromEntity).collect(Collectors.toList());
+  }
+
+  public final Page<T> createPageFromEntities(final Page<U> entities) {
+    Page<T> dtoPage = entities.map(this::convertFromEntity);
+    return dtoPage;
   }
 
 }
