@@ -4,6 +4,8 @@ import com.perifacode.gerenciador.adapter.presenters.TipoIniciativaDto;
 import com.perifacode.gerenciador.usecase.TipoIniciativaService;
 import com.perifacode.gerenciador.usecase.excecao.Resultado;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,4 +40,15 @@ public class TipoIniciativaController {
     }
   }
 
+  @GetMapping()
+  public ResponseEntity<Page<TipoIniciativaDto>> buscarTodosTipos(Pageable pageable) {
+    Resultado<Page<TipoIniciativaDto>, RuntimeException> tipoIniciativa =
+        tipoIniciativaService.findAll(pageable);
+    if (tipoIniciativa.isSucess()) {
+      return ResponseEntity.ok(
+          tipoIniciativa.getResult());
+    } else {
+      return ResponseEntity.notFound().build();
+    }
+  }
 }

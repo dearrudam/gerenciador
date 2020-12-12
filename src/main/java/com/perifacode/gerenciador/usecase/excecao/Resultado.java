@@ -1,33 +1,31 @@
 package com.perifacode.gerenciador.usecase.excecao;
 
-import com.perifacode.gerenciador.adapter.presenters.TipoIniciativaDto;
-
-public class Resultado<R, Ex> {
+public class Resultado<R, E> {
 
   private R result;
-  private Ex exception;
+  private E exception;
   private boolean sucess = false;
 
-  public Resultado<R, Ex> falha(
-      Ex ex) {
+  public Resultado<R, E> falha(
+      E ex) {
     Resultado r = new Resultado<>();
     r.sucess = false;
     r.exception = ex;
     return r;
   }
 
-  public Resultado<R, Ex> sucesso(R result) {
+  public Resultado<R, E> sucesso(R result) {
     Resultado r = new Resultado<>();
     r.sucess = true;
     r.result = result;
     return r;
   }
 
-  public boolean isSucess(){
+  public boolean isSucess() {
     return sucess;
   }
 
-  public R getResult(){
+  public R getResult() {
     return result;
   }
 

@@ -10,6 +10,10 @@ spring:
     username: admin
     password: admin
     driver-class-name: org.h2.Driver
+    initialize: true
+    data: classpath:data.sql
   jpa:
+    show-sql: true
     hibernate:
+      format_sql: true
       ddl-auto: create

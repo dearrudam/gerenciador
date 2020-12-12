@@ -5,7 +5,7 @@ import com.perifacode.gerenciador.entity.TipoIniciativa;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TipoIniciativaConverter extends Converter<TipoIniciativaDto, TipoIniciativa > {
+public class TipoIniciativaConverter extends Converter<TipoIniciativaDto, TipoIniciativa> {
 
   public TipoIniciativaConverter() {
     super(TipoIniciativaConverter::fromDto, TipoIniciativaConverter::fromEntity);

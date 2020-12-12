@@ -9,6 +9,8 @@ import com.perifacode.gerenciador.usecase.excecao.TipoIniciativaException;
 import java.util.Optional;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,6 +34,15 @@ public class TipoIniciativaService {
       return   new Resultado().sucesso(converter.convertFromEntity(byCodigo.get()));
     } else {
       return  new Resultado().falha(new TipoIniciativaException("Não encontrado"));
+    }
+  }
+
+  public Resultado<Page<TipoIniciativaDto>, RuntimeException> findAll(Pageable pageable) {
+    Page<TipoIniciativa> pagina = tipoIniciativaRepository.findAll(pageable);
+    if (!pagina.isEmpty()) {
+      return new Resultado().sucesso(converter.createPageFromEntities(pagina));
+    } else {
+      return new Resultado().falha(new TipoIniciativaException("Não encontrado"));
     }
   }
 }

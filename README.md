@@ -38,7 +38,7 @@ Inicialmente fomos o que levantamos para iniciar o desenvolvimento.
 - [x]  O que um serviço de tipo tem de informação? código, Titulo, descrição, data de cadastro, data de atualização, ativo
 - [x]  Criar cadastrado de Tipos de Iniciativas
 - [ ]  Atualizar tipo de iniciativa
-- [ ]  Lista de  tipos de iniciativas
+- [x]  Lista de  tipos de iniciativas
 - [ ]  Inativar tipo de iniciativa
 - [x]  Busca de tipos de Iniciativa por código 
 - [ ]  Busca de tipos de Iniciativa (lista), com filtros de data de criação, data de inativação e por status (ativo ou inativo)
